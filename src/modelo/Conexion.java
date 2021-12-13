@@ -10,9 +10,9 @@ import java.util.logging.Logger;
 
 public class Conexion {
     
-    private final String base = "tienda";
+    private final String base = "xcommerce";
     private final String user = "root";
-    private final String password = "1234";
+    private final String password = "admin";
     private final String url = "jdbc:mysql://localhost:3306/" + base;
     private Connection con = null;
     

@@ -7,8 +7,7 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import modelo.Conexion;
@@ -32,7 +31,7 @@ public class Excel {
         //leer();
         //cargar();
         //modificar();
-
+        cargarArticulos();
     }
 
     public static void crearExcel() {
@@ -116,7 +115,7 @@ public class Excel {
 
         try {
             Connection conn = con.getConexion();
-            FileInputStream file = new FileInputStream(new File("D:\\productos.xlsx"));
+            FileInputStream file = new FileInputStream(new File("C:\\Users\\Yann\\Desktop\\Excel\\Excel\\articulos.xlsx"));
 
             XSSFWorkbook wb = new XSSFWorkbook(file);
             XSSFSheet sheet = wb.getSheetAt(0);
@@ -174,6 +173,36 @@ public class Excel {
         } catch (FileNotFoundException ex) {
             Logger.getLogger(Excel.class.getName()).log(Level.SEVERE, null, ex);
         }
+    }
+    
+    
+    
+    public static void cargarArticulos() throws IOException, SQLException {
+    	
+    	//Primera comilla va ruta y nombre de la base de datos a la que nos queremos conectar
+    	//Segunda Nombre de usuario
+    	//Tercera es la contraseña de la base de datos
+    	Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/xcommerce","root","admin");
+        /*PreparedStatement pst = cn.prepareStatement("Insert into alumnos values (?,?,?)"); //Aquí va la consulta
+    	pst.setString(1, "0"); //el primer campo hace referencia a la columna de la BD y el segundo al valor
+    	pst.setString(2, "Un nombre de alumno"); //Para la columna del alumno   Metodo: trim() elimina espacios al inicio y al final.
+    	pst.setString(3, "Un grupo del alumno"); //el
+    	pst.executeUpdate(); //Ejecutará la consulta*/
+    	
+    	PreparedStatement pst = cn.prepareStatement("select * from articles where id=?"); //Selecciona todo del id que recibirá
+    	//Enviandole a la base de datos lo que queremos consultar.
+    	pst.setString(1, "1"); //Se le indica el numero del campo y el valor a buscar.
+    	
+    	//Nos ayudará a obtener el resultado de la consulta.
+    	ResultSet rs = pst.executeQuery(); //Nos permitirá saber si se encontraron o no los resultados.
+    	//validando si obtuvo valores o no:
+    	if(rs.next()) { //Si encontró algo entonces:
+    		System.out.println( rs.getString("category") ); //Va entre comilla el campo que queremos ver
+    		System.out.println( rs.getString("description")); //Obtiene la descripción
+    	}else {
+    		System.out.println("No se obtuvieron registros");
+    	}
+    	
     }
     
 }
