@@ -1,6 +1,7 @@
 
 package modelo;
 
+import java.sql.Connection;
 //import com.mysql.jdbc.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -13,9 +14,9 @@ public class Conexion {
     private final String user = "root";
     private final String password = "1234";
     private final String url = "jdbc:mysql://localhost:3306/" + base;
-    //private Connection con = null;
+    private Connection con = null;
     
-    /*public Connection getConexion()
+    public Connection getConexion()
     {
         
         try{
@@ -29,6 +30,6 @@ public class Conexion {
             Logger.getLogger(Conexion.class.getName()).log(Level.SEVERE, null, ex);
         }
       return con;  
-    }*/
+    }
 
 }

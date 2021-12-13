@@ -6,6 +6,7 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.logging.Level;
@@ -35,8 +36,9 @@ public class Excel {
     }
 
     public static void crearExcel() {
+    	System.out.println("Prueba de XLM");
         Workbook book = new XSSFWorkbook();
-        Sheet sheet = book.createSheet("Hola Java");
+        Sheet sheet = book.createSheet("Prueba");
 
         Row row = sheet.createRow(0);
         row.createCell(0).setCellValue("Hola Mundo");
@@ -107,7 +109,7 @@ public class Excel {
         }
     }
 
-    /*public static void cargar() throws IOException, SQLException {
+    public static void cargar() throws IOException, SQLException {
 
         Conexion con = new Conexion();
         PreparedStatement ps;
@@ -146,32 +148,32 @@ public class Excel {
             XSSFWorkbook wb = new XSSFWorkbook(file);
             XSSFSheet sheet = wb.getSheetAt(0);
 
-            XSSFRow fila = sheet.getRow(1);
+            XSSFRow fila = sheet.getRow(1); //Obtiene la fila 1
             
-            if(fila == null)
+            if(fila == null) //Si no existe la fila, la crea
             {
                fila = sheet.createRow(1);
             }
             
-            XSSFCell celda = fila.createCell(1);
+            XSSFCell celda = fila.createCell(1); //Obtiene la celda 1
             
-            if(celda == null)
+            if(celda == null) //Si no existe la celda la crea
             {
                celda = fila.createCell(1);
             }
             
-            celda.setCellValue("Modificacion");
+            celda.setCellValue("Modificacion"); //ASigna el nuevo valor
             
-            file.close();
+            file.close(); //Cierra la hoja
             
-            FileOutputStream output = new FileOutputStream("D:\\nuevo.xlsx");
-            wb.write(output);
-            output.close();
+            FileOutputStream output = new FileOutputStream("D:\\nuevo.xlsx"); //Puede ser en el mismo archivo o en otro 
+            wb.write(output); //En esta parte se envia todo lo que se hizo arriba
+            output.close(); //Cierra
             
 
         } catch (FileNotFoundException ex) {
             Logger.getLogger(Excel.class.getName()).log(Level.SEVERE, null, ex);
         }
-    }*/
+    }
     
 }

@@ -19,5 +19,6 @@
 	<classpathentry kind="lib" path="C:/Users/Yann/Desktop/Excel/poi-3.16/lib/commons-logging-1.2.jar"/>
 	<classpathentry kind="lib" path="C:/Users/Yann/Desktop/Excel/poi-3.16/lib/junit-4.12.jar"/>
 	<classpathentry kind="lib" path="C:/Users/Yann/Desktop/Excel/poi-3.16/lib/log4j-1.2.17.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Yann/Desktop/Excel/SQL Connector/mysql-connector-java-8.0.26.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
